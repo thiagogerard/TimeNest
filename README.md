@@ -14,7 +14,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 TimeNest — Task management with energy tracking and balance-focused
 productivity
-
 Problem Statement:
 Most task management apps are centered around raw productivity: the more
 tasks you complete, the better. This can easily lead to burnout, overload, and a
@@ -23,46 +22,54 @@ TimeNest introduces a more mindful approach. Each task has an "energy weight,"
 and users can track their available energy for the day — helping them plan better,
 avoid overcommitment, and maintain a healthier productivity flow.
 
-Technology Stack:
+🛠️ Technology Stack
 
 Frontend:
+
 React.js
+
 TailwindCSS
+
 React Router
+
 Axios
+
 Recharts (for charts and analytics)
 
 Backend:
+
 Node.js + Express
+
 MongoDB with Mongoose
+
 JWT + bcrypt for authentication
+
 CORS + Express middlewares
 
 Deployment:
+
 Vercel (Frontend)
+
 Render or Railway (Backend)
+
 GitHub for version control
 
-Core Features:
-Secure authentication (JWT, register/login)
-Full CRUD for tasks
-Tasks include an energy value (light, medium, heavy)
-Daily energy tracking and limits
-Weekly dashboard with insights and emoji mood indicators
-User profile page
-Public landing page for visitors
-
-User Stories:
+👥 User Stories
 
 Regular User:
-As a user, I want to assign energy weights to tasks so I can balance my
-workload
+
+As a user, I want to assign energy weights to tasks so I can balance my workload
+
 As a user, I want to track how much energy I’ve used each day
+
 As a user, I want to visualize my weekly balance and task categories
+
 As a user, I want a clean and responsive interface to manage tasks
 
 Admin (optional):
+
 As an admin, I want to view users and basic usage statistics
+
 As an admin, I can manage or promote users if needed
 
 Database Entities (Core Models):
