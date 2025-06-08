@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# root-level
+node_modules/
+package-lock.json
+
+# backend
+/backend/node_modules
+/backend/package-lock.json
+
+# frontend
+/frontend/node_modules
+/frontend/package-lock.json
