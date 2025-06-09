@@ -1,78 +1,89 @@
-# React + Vite
+# TimeNest 🕊️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TimeNest is a mindful task management app focused on energy tracking instead of just productivity. 
+It helps users assign energy weights to tasks and manage their workload in a healthier and more balanced way.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ Secure user authentication with JWT
+- ✅ Task creation with energy weight (light, medium, heavy)
+- ✅ Daily energy usage tracking
+- ✅ CRUD operations for tasks
+- ✅ Weekly dashboard (to be implemented)
+- ✅ Public landing page and user profile (frontend)
 
-## Expanding the ESLint configuration
+## 🧱 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Frontend:**
+- React.js
+- TailwindCSS
+- React Router
+- Axios
+- Recharts (for charts)
 
+**Backend:**
+- Node.js + Express
+- MongoDB + Mongoose
+- JWT + bcrypt
+- CORS + middleware
 
-TimeNest — Task management with energy tracking and balance-focused
-productivity
-Problem Statement:
-Most task management apps are centered around raw productivity: the more
-tasks you complete, the better. This can easily lead to burnout, overload, and a
-lack of awareness of personal limits.
-TimeNest introduces a more mindful approach. Each task has an "energy weight,"
-and users can track their available energy for the day — helping them plan better,
-avoid overcommitment, and maintain a healthier productivity flow.
+**Deployment:**
+- Vercel (Frontend)
+- Render or Railway (Backend)
+- GitHub for version control
 
-🛠️ Technology Stack
+## 📦 Installation
 
-Frontend:
+**Backend**
+```bash
+cd backend
+npm install
+npm run dev
+```
 
-React.js
+**Frontend**
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-TailwindCSS
+## 📌 API Documentation
+See the full API docs here: [timenest_api_endpoints.md](./timenest_api_endpoints.md)
 
-React Router
+## 🙋‍♂️ Author
 
-Axios
+- Thiago Souza Geraldi — [GitHub](https://github.com/thiagogerard)
 
-Recharts (for charts and analytics)
+## 📄 License
 
-Backend:
+This project is licensed under the MIT License.
+## 🧠 Project Proposal
 
-Node.js + Express
+**Problem:**
+Most task management apps focus only on raw productivity — completing more tasks regardless of personal limits.
+This often leads to burnout and poor workload balance.
 
-MongoDB with Mongoose
+**Solution:**
+TimeNest introduces a balanced productivity approach. Each task is assigned an 'energy weight', and users can track their daily energy capacity.
+This allows better planning, prevents overcommitment, and encourages sustainable productivity.
 
-JWT + bcrypt for authentication
+**Technology Stack:**
 
-CORS + Express middlewares
+**Frontend:**
+- React.js
+- TailwindCSS
+- React Router
+- Axios
+- Recharts
 
-Deployment:
+**Backend:**
+- Node.js + Express
+- MongoDB + Mongoose
+- JWT + bcrypt
+- CORS + custom middlewares
 
-Vercel (Frontend)
-
-Render or Railway (Backend)
-
-GitHub for version control
-
-👥 User Stories
-
-Regular User:
-
-As a user, I want to assign energy weights to tasks so I can balance my workload
-
-As a user, I want to track how much energy I’ve used each day
-
-As a user, I want to visualize my weekly balance and task categories
-
-As a user, I want a clean and responsive interface to manage tasks
-
-Admin (optional):
-
-As an admin, I want to view users and basic usage statistics
-
-As an admin, I can manage or promote users if needed
-
-Database Entities (Core Models):
-User : name, email, password (hashed), dailyEnergy (default: 100)
-Task : title, category, weight (10, 25, 40), status, dueDate, userId
-Session (optional): date, tasksCompleted, energyUsed
+**Deployment:**
+- Vercel (frontend)
+- Render or Railway (backend)
+- GitHub for version control
