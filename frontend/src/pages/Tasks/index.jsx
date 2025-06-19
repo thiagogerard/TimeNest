@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTasks, createTask, deleteTask } from "../../services/taskService";
+import { getTasks, createTask, deleteTask, updateTask } from "../../services/taskService";
 
 export default function Tasks() {
     const [tasks, setTasks] = useState([]);
@@ -51,6 +51,20 @@ export default function Tasks() {
       }
     }
 
+    async function handleComplete(id) {
+      try{
+        const updatedTask = await updateTask(id, {status: 'completed'});
+
+        setTasks(prev => 
+          prev.map(task => 
+            task._id === id ? updatedTask : task
+          )
+        );
+      } catch (err) {
+        console.error('Error completing task:', err);
+      }
+    }
+
     return (
       <div>
         <h1>Your tasks</h1>
@@ -89,8 +103,15 @@ export default function Tasks() {
             <p>You still have no tasks.</p>
           ) : (
             tasks.map(task => (
-              <li key={task._id}>
+              <li 
+                key={task._id}
+                className={task.status === 'completed' ? 'text-gray-400 line-through opacity-60' : ''}
+              >
                 {task.title} - {task.category} - {task.status}
+
+                {task.status === 'pending' && (
+                  <button onClick={() => handleComplete(task._id)}>Complete</button>
+                )}
                 <button onClick={() => handleDelete(task._id)}>Delete</button>
               </li>
             ))

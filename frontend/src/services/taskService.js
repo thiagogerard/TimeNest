@@ -46,4 +46,6 @@ export async function updateTask(id, data) {
             Authorization: `Bearer ${token}`,
         },
     });
+
+    return response.data;
 }
