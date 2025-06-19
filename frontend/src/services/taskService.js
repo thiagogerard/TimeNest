@@ -25,3 +25,25 @@ export async function getTasks() {
 
     return response.data;
 }
+
+export async function deleteTask(id) {
+    const token = localStorage.getItem('token');
+
+    const response = axios.delete(`${API_URL}/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    return response.data;
+}
+
+export async function updateTask(id, data) {
+    const token = localStorage.getItem('token');
+
+    const response = await axios.put(`${API_URL}/${id}`, data, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+}

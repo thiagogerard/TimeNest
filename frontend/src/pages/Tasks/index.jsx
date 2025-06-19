@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTasks, createTask } from "../../services/taskService";
+import { getTasks, createTask, deleteTask } from "../../services/taskService";
 
 export default function Tasks() {
     const [tasks, setTasks] = useState([]);
@@ -39,6 +39,15 @@ export default function Tasks() {
         setDueDate('');
       } catch (err) {
         console.error('Error creating task:', err)
+      }
+    }
+
+    async function handleDelete(id) {
+      try {
+        await deleteTask(id);
+        setTasks(prev => prev.filter(task => task._id !== id))
+      } catch (err) {
+        console.log('Error deleting task:', err)
       }
     }
 
@@ -82,6 +91,7 @@ export default function Tasks() {
             tasks.map(task => (
               <li key={task._id}>
                 {task.title} - {task.category} - {task.status}
+                <button onClick={() => handleDelete(task._id)}>Delete</button>
               </li>
             ))
           )
