@@ -7,6 +7,10 @@ export default function Tasks() {
     const [category, setCategory] = useState('');
     const [weight, setWeight] = useState('');
     const [dueDate, setDueDate] = useState('');
+    const [editingId, setEditingId] = useState('');
+    const [editTitle, setEditTitle] = useState('');
+    const [editCategory, setEditCategory] =useState('');
+
 
     useEffect(() => {
       async function fetchTasks() {
@@ -65,6 +69,31 @@ export default function Tasks() {
       }
     }
 
+    function startEditing(task) {
+      setEditingId(task._id);
+      setEditTitle(task.title);
+      setEditCategory(task.category);
+    }
+
+    async function handleEditSave(id) {
+      try {
+        const updatedTask = await updateTask(id, {
+          title: editTitle,
+          category: editCategory
+        });
+
+        setTasks(prev =>
+          prev.map(task =>
+            task._id === id ? updatedTask : task
+          )
+        );
+
+        setEditingId(null);
+      } catch (err) {
+        console.error('Error editing task:', err);
+      }
+    }
+
     return (
       <div>
         <h1>Your tasks</h1>
@@ -107,12 +136,31 @@ export default function Tasks() {
                 key={task._id}
                 className={task.status === 'completed' ? 'text-gray-400 line-through opacity-60' : ''}
               >
-                {task.title} - {task.category} - {task.status}
-
-                {task.status === 'pending' && (
-                  <button onClick={() => handleComplete(task._id)}>Complete</button>
+                {editingId === task._id ? (
+                  <>
+                    <input 
+                      type="text"
+                      value={editTitle}
+                      onChange={e => setEditTitle(e.target.value)}
+                    />
+                    <input 
+                      type="text"
+                      value={editCategory}
+                      onChange={e => setEditCategory(e.target.value)}
+                    />
+                    <button onClick={() => handleEditSave(task._id)}>Save</button>
+                    <button onClick={() => setEditingId(null)}>Cancel</button>
+                  </>
+                ) : (
+                  <>
+                    {task.title} - {task.category} - {task.status}
+                    {task.status === 'pending' && (
+                      <button onClick={() => handleComplete(task._id)}>Complete</button>
+                    )}
+                    <button onClick={() => handleDelete(task._id)}>Delete</button>
+                    <button onClick={() => startEditing(task)}>Edit</button>
+                  </>
                 )}
-                <button onClick={() => handleDelete(task._id)}>Delete</button>
               </li>
             ))
           )
