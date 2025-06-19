@@ -13,7 +13,7 @@ export default function Dashboard() {
     return (
       <div>
         <h1>Dashboard</h1>
-        <button onClick={handleLogout}></button>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     )
 }
