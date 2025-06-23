@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        cream: '#FEFAE0',
         green: '#35a160',
         darkGreen: '#08261f',
         lightGreen: '#e4f2d0',
