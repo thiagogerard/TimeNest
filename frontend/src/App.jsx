@@ -5,7 +5,6 @@ import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
-import Tasks from './pages/Tasks'
 import Profile from './pages/Profile'
 import PrivateRoute from './components/PrivateRoute'
 import Navbar from './components/Navbar'
@@ -23,13 +22,6 @@ function App() {
             <PrivateRoute>
               <Navbar />
               <Dashboard />
-            </PrivateRoute>
-          } 
-        />
-        <Route path="/tasks" 
-          element={
-            <PrivateRoute>
-              <Tasks />
             </PrivateRoute>
           } 
         />
