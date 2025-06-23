@@ -35,7 +35,8 @@ export default function Dashboard() {
     e.preventDefault();
 
     if (!title.trim() || !category.trim()) {
-      toast.warn('Fill out the title and category!')
+      toast.warn('Fill out the title and category!');
+      return;
     }
 
     try {
