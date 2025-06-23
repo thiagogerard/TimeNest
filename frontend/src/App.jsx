@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import Tasks from './pages/Tasks'
 import Profile from './pages/Profile'
 import PrivateRoute from './components/PrivateRoute'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/dashboard" 
           element={
             <PrivateRoute>
+              <Navbar />
               <Dashboard />
             </PrivateRoute>
           } 
@@ -34,6 +36,7 @@ function App() {
         <Route path="/profile" 
           element={
             <PrivateRoute>
+              <Navbar />
               <Profile />
             </PrivateRoute>
           } 
