@@ -47,6 +47,8 @@ export default function Dashboard() {
         dueDate,
       });
 
+      console.log('tarefa criada com sucesso:', newTask)
+
       setTasks(prev => [newTask, ...prev]);
       setTitle('');
       setCategory('');
@@ -116,9 +118,16 @@ export default function Dashboard() {
     }
   }
 
-  const today = new Date().toISOString().slice(0, 10);
-  const todaysTasks = tasks.filter(task => task.dueDate === today);
-
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  const todayStr = `${yyyy}-${mm}-${dd}`;
+  
+  const todaysTasks = tasks.filter(task =>
+    task.dueDate?.slice(0, 10) === todayStr
+  );
+  
   return (
     <div>
       <h1>Your tasks</h1>
@@ -147,13 +156,13 @@ export default function Dashboard() {
         <input
           type="date"
           value={dueDate}
-          onChange={e => setDueDate(e.target,value)}
+          onChange={e => setDueDate(e.target.value)}
         />
         <button type="submit">Create task</button>
       </form>
 
       <ul>
-        {tasks.length === 0 ? (
+        {todaysTasks.length === 0 ? (
           <p>You still have no tasks for today.</p>
         ) : (
           todaysTasks.map(task => (
