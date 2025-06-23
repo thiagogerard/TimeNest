@@ -15,6 +15,7 @@ export default function Login() {
             const data = await loginUser(email, password);
             console.log('Answer from backend', data);
             localStorage.setItem('token', data.token);
+            localStorage.setItem('username', data.user.name);
             navigate('/dashboard');
         } catch (err) {
             console.error('Login error', err);

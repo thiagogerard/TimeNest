@@ -115,6 +115,9 @@ export default function Dashboard() {
     }
   }
 
+  const today = new Date().toISOString().slice(0, 10);
+  const todaysTasks = tasks.filter(task => task.dueDate === today);
+
   return (
     <div>
       <h1>Your tasks</h1>
@@ -150,9 +153,9 @@ export default function Dashboard() {
 
       <ul>
         {tasks.length === 0 ? (
-          <p>You still have no tasks.</p>
+          <p>You still have no tasks for today.</p>
         ) : (
-          tasks.map(task => (
+          todaysTasks.map(task => (
             <li 
               key={task._id}
               className={task.status === 'completed' ? 'text-gray-400 line-through opacity-60' : ''}

@@ -1,4 +1,6 @@
 export default function Profile() {
-    return <h1>Profile</h1>;
+  const username = localStorage.getItem('username');
+
+    return <h1>Welcome, {username}</h1>;
   }
   
