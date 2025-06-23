@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTasks, createTask, deleteTask, updateTask } from "../../services/taskService";
+import { toast } from "react-toastify";
 
 export default function Tasks() {
     const [tasks, setTasks] = useState([]);
@@ -41,8 +42,11 @@ export default function Tasks() {
         setCategory('');
         setWeight(10);
         setDueDate('');
+
+        toast.success('Task successfully created!')
       } catch (err) {
         console.error('Error creating task:', err)
+        toast.error('Error creating task!')
       }
     }
 
@@ -50,8 +54,11 @@ export default function Tasks() {
       try {
         await deleteTask(id);
         setTasks(prev => prev.filter(task => task._id !== id))
+
+        toast.success('Task successfully deleted!')
       } catch (err) {
         console.log('Error deleting task:', err)
+        toast.error('Error deleting task!')
       }
     }
 
@@ -64,8 +71,11 @@ export default function Tasks() {
             task._id === id ? updatedTask : task
           )
         );
+
+        toast.success('Task successfully updated!')
       } catch (err) {
         console.error('Error completing task:', err);
+        toast.error('Error updating task!')
       }
     }
 
@@ -87,10 +97,12 @@ export default function Tasks() {
             task._id === id ? updatedTask : task
           )
         );
-
         setEditingId(null);
+
+        toast.success('Task successfully edited!')
       } catch (err) {
         console.error('Error editing task:', err);
+        toast.error('Error editing task!')
       }
     }
 
