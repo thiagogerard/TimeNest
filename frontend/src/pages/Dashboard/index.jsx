@@ -129,78 +129,100 @@ export default function Dashboard() {
   );
   
   return (
-    <div>
-      <h1>Your tasks</h1>
+    <div className="flex flex-col min-h-screen bg-cream relative overflow-hidden">
+    <div className="absolute -top-20 -left-20 w-40 h-40 bg-emerald-100 rounded-full blur-3xl" />
+    <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-emerald-200 rounded-full blur-3xl" />
 
-      <form onSubmit={handleCreateTask}>
+    <header className="z-10 flex flex-col items-center pt-16 px-6">
+      <h1 className="text-2xl font-bold text-emerald-600 mb-4">Your Tasks</h1>
+      <form
+        onSubmit={handleCreateTask}
+        className="w-full bg-white p-4 rounded-xl shadow-lg space-y-3"
+      >
         <input
           type="text"
           placeholder="Category"
           value={category}
           onChange={e => setCategory(e.target.value)}
+          className="w-full border border-gray-300 rounded px-3 py-2"
         />
         <input
           type="text"
           placeholder="Title"
           value={title}
           onChange={e => setTitle(e.target.value)}
+          className="w-full border border-gray-300 rounded px-3 py-2"
         />
-        <select
-          value={weight}
-          onChange={e => setWeight(Number(e.target.value))}
+        <div className="flex space-x-2">
+          <select
+            value={weight}
+            onChange={e => setWeight(Number(e.target.value))}
+            className="flex-1 border border-gray-300 rounded px-3 py-2"
+          >
+            <option value={10}>Light</option>
+            <option value={25}>Medium</option>
+            <option value={40}>High</option>
+          </select>
+          <input
+            type="date"
+            value={dueDate}
+            onChange={e => setDueDate(e.target.value)}
+            className="flex-1 border border-gray-300 rounded px-3 py-2"
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-gradient-to-r from-emerald-400 to-emerald-600 text-white py-2 rounded-full font-semibold shadow"
         >
-          <option value={10}>Light (10)</option>
-          <option value={25}>Medium (25)</option>
-          <option value={40}>High (40)</option>
-        </select>
-        <input
-          type="date"
-          value={dueDate}
-          onChange={e => setDueDate(e.target.value)}
-        />
-        <button type="submit">Create task</button>
+          Criar tarefa
+        </button>
       </form>
+    </header>
 
-      <ul>
-        {todaysTasks.length === 0 ? (
-          <p>You still have no tasks for today.</p>
-        ) : (
-          todaysTasks.map(task => (
-            <li 
+    <main className="z-10 flex-1 px-6 pt-6">
+      {todaysTasks.length === 0 ? (
+        <p className="text-center text-gray-600">No tasks for today.</p>
+      ) : (
+        <ul className="space-y-4">
+          {todaysTasks.map(task => (
+            <li
               key={task._id}
-              className={task.status === 'completed' ? 'text-gray-400 line-through opacity-60' : ''}
+              className={`bg-white p-4 rounded-xl shadow flex justify-between items-center ${
+                task.status === 'completed'
+                  ? 'opacity-60 line-through'
+                  : ''
+              }`}
             >
-              {editingId === task._id ? (
-                <>
-                  <input 
-                    type="text"
-                    value={editTitle}
-                    onChange={e => setEditTitle(e.target.value)}
-                  />
-                  <input 
-                    type="text"
-                    value={editCategory}
-                    onChange={e => setEditCategory(e.target.value)}
-                  />
-                  <button onClick={() => handleEditSave(task._id)}>Save</button>
-                  <button onClick={() => setEditingId(null)}>Cancel</button>
-                </>
-              ) : (
-                <>
-                  {task.title} - {task.category} - {task.status}
-                  {task.status === 'pending' && (
-                    <button onClick={() => handleComplete(task._id)}>Complete</button>
-                  )}
-                  <button onClick={() => handleDelete(task._id)}>Delete</button>
-                  <button onClick={() => startEditing(task)}>Edit</button>
-                </>
-              )}
+              <div>
+                <h4 className="font-medium">{task.title}</h4>
+                <p className="text-sm text-gray-500">{task.category}</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                {task.status === 'pending' && (
+                  <button
+                    onClick={() => handleComplete(task._id)}
+                    className="text-emerald-600"
+                  >
+                    ✓
+                  </button>
+                )}
+                <button
+                  onClick={() => handleDelete(task._id)}
+                  className="text-red-500"
+                >
+                  🗑
+                </button>
+              </div>
             </li>
-          ))
-        )
-        }
-      </ul>
-    </div>
+          ))}
+        </ul>
+      )}
+    </main>
+
+    <footer className="z-10 px-6 py-4 text-center text-gray-500 text-xs">
+      © 2025 TimeNest
+    </footer>
+  </div>
   )
 }
   
