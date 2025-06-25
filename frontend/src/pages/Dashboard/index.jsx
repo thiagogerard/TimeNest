@@ -133,8 +133,8 @@ export default function Dashboard() {
     <div className="absolute -top-20 -left-20 w-40 h-40 bg-emerald-100 rounded-full blur-3xl" />
     <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-emerald-200 rounded-full blur-3xl" />
 
-    <header className="z-10 flex flex-col items-center pt-16 px-6">
-      <h1 className="text-2xl font-bold text-emerald-600 mb-4">Your Tasks</h1>
+    <header className="z-10 flex flex-col items-center pt-16 px-6 ">
+      <h1 className="text-2xl font-bold text-emerald-600 mb-4 ">Your Tasks</h1>
       <form
         onSubmit={handleCreateTask}
         className="w-full bg-white p-4 rounded-xl shadow-lg space-y-3"
