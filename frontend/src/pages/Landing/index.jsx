@@ -6,11 +6,11 @@ export default function Landing() {
 
   return (
     <div className="flex flex-col min-h-screen bg-cream md:bg-darkGreen">
-      <header className="h-[70vh] flex flex-col items-center justify-center px-6 text-center relative overflow-hidden md:flex-none md:pb-0 md:px-20 md:my-40 md:mx-40 md:border md:rounded-2xl md:shadow-lg md:bg-cream">
+      <header className="h-[70vh] flex flex-col items-center justify-center px-6 text-center relative overflow-hidden md:flex-none md:pb-0 md:px-20 md:my-40 md:mx-40 md:border md:rounded-2xl md:shadow-lg md:bg-cream lg:mx-60">
         <div className="absolute -top-16 -left-16 w-48 h-48 bg-emerald-100 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-16 -right-16 w-72 h-72 bg-emerald-200 rounded-full blur-3xl"></div>
 
-      <div className="md:flex md:flex-row md:justify-between md:w-full md:px-20">
+      <div className="md:flex md:flex-row md:justify-between md:w-full md:px-20 lg:px-40">
         <div className="flex items-center ml-10 space-x-0 mb-7 z-10">
           <img
             src={logo}
