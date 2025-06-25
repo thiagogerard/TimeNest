@@ -10,37 +10,37 @@ export default function Landing() {
         <div className="absolute -top-16 -left-16 w-48 h-48 bg-emerald-100 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-16 -right-16 w-72 h-72 bg-emerald-200 rounded-full blur-3xl"></div>
 
-      <div className="md:flex md:flex-row md:justify-between md:w-full md:px-20 2xl:px-40">
-        <div className="flex items-center ml-10 space-x-0 mb-7 z-10">
-          <img
-            src={logo}
-            alt="TimeNest logo"
-            className="w-20 h-20 md:w-24 md:h-24 drop-shadow-md"
-          />
-          <h1 className="text-3xl font-bold text-emerald-600 md:text-4xl">TimeNest</h1>
+        <div className="md:flex md:flex-row md:justify-between md:w-full md:px-20 2xl:px-40">
+          <div className="flex items-center ml-10 space-x-0 mb-7 z-10">
+            <img
+              src={logo}
+              alt="TimeNest logo"
+              className="w-20 h-20 md:w-24 md:h-24 drop-shadow-md"
+            />
+            <h1 className="text-3xl font-bold text-emerald-600 md:text-4xl">TimeNest</h1>
+          </div>
+          <div className="flex flex-col">
+            <h2 className="text-3xl font-bold text-emerald-600 mb-3 z-10">
+              Organize your day,<br></br> your way.
+            </h2>
+            <p className="text-gray-600 mb-8 max-w-xs z-10">
+              TimeNest helps you plan tasks, track progress, and build better habits
+              with a daily credit system.
+            </p>
+            <button
+              onClick={() => navigate('/register')}
+              className="px-8 py-3 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 text-white font-semibold shadow-lg hover:opacity-90 transition z-10"
+            >
+              Get Started
+            </button>
+            <button
+              onClick={() => navigate('/login')}
+              className="mt-4 text-sm text-emerald-600 underline z-10"
+            >
+              Already have an account? Log in
+            </button>
+          </div>
         </div>
-        <div className="flex flex-col">
-          <h2 className="text-3xl font-bold text-emerald-600 mb-3 z-10">
-            Organize your day,<br></br> your way.
-          </h2>
-          <p className="text-gray-600 mb-8 max-w-xs z-10">
-            TimeNest helps you plan tasks, track progress, and build better habits
-            with a daily credit system.
-          </p>
-          <button
-            onClick={() => navigate('/register')}
-            className="px-8 py-3 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 text-white font-semibold shadow-lg hover:opacity-90 transition z-10"
-          >
-            Get Started
-          </button>
-          <button
-            onClick={() => navigate('/login')}
-            className="mt-4 text-sm text-emerald-600 underline z-10"
-          >
-            Already have an account? Log in
-          </button>
-        </div>
-      </div>
 
       <footer className="hidden md:block pt-10 text-center text-black text-xs">
         © 2025 TimeNest
