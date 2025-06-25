@@ -1,20 +1,103 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import logo from '../assets/timenest.png' 
 
 export default function Navbar() {
-    const Navigate = useNavigate();
+  const navigate = useNavigate()
+  const [isOpen, setIsOpen] = useState(false)
 
-    function handleLogout() {
-        localStorage.removeItem('token');
-        Navigate('/login');
-    }
+  function handleLogout() {
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
 
-    return (
-        <nav>
-            <ul>
-                <li><Link to='/dashboard'>Dashboard</Link></li>
-                <li><Link to='/profile'>Profile</Link></li>
-                <li><button onClick={handleLogout}>Logout</button></li>
+  return (
+    <nav className="sticky top-0 z-30 bg-white shadow-md flex items-center justify-between px-4 py-3 md:shadow-none">
+      
+      <Link to="/dashboard" className="flex items-center space-x-2">
+        <img src={logo} alt="TimeNest" className="w-8 h-8" />
+        <span className="text-lg font-semibold text-emerald-600">TimeNest</span>
+      </Link>
+
+      <button
+        className="md:hidden text-2xl text-emerald-600"
+        onClick={() => setIsOpen(true)}
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+      <ul className="hidden md:flex md:space-x-6">
+        <li>
+          <Link to="/dashboard" className="text-gray-700 hover:text-emerald-600">
+            Dashboard
+          </Link>
+        </li>
+        <li>
+          <Link to="/profile" className="text-gray-700 hover:text-emerald-600">
+            Profile
+          </Link>
+        </li>
+        <li>
+          <button
+            onClick={handleLogout}
+            className="text-gray-700 hover:text-emerald-600"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+
+      {isOpen && (
+        <div className="fixed inset-0 z-20 flex">
+          <div
+            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
+
+          <div className="relative bg-white w-3/4 max-w-xs h-full shadow-lg p-6">
+            <button
+              className="absolute top-4 right-4 text-xl text-gray-600"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close menu"
+            >
+              ×
+            </button>
+
+            <ul className="mt-12 space-y-6">
+              <li>
+                <Link
+                  to="/dashboard"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg font-medium text-gray-800 hover:text-emerald-600"
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/profile"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-lg font-medium text-gray-800 hover:text-emerald-600"
+                >
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    setIsOpen(false)
+                    handleLogout()
+                  }}
+                  className="block text-lg font-medium text-gray-800 hover:text-emerald-600"
+                >
+                  Logout
+                </button>
+              </li>
             </ul>
-        </nav>
-    )
+          </div>
+        </div>
+      )}
+    </nav>
+  )
 }
