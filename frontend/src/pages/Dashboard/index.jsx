@@ -5,6 +5,7 @@ import {
   updateTask,
   deleteTask,
 } from '../../services/taskService';
+import { getWeeklyReport } from '../../services/reportService';
 import { toast } from 'react-toastify';
 
 export default function Dashboard() {
@@ -16,6 +17,7 @@ export default function Dashboard() {
   const [editingId, setEditingId] = useState('');
   const [editTitle, setEditTitle] = useState('');
   const [editCategory, setEditCategory] =useState('');
+  const [report, setReport] = useState([]);
 
 
   useEffect(() => {
@@ -29,6 +31,16 @@ export default function Dashboard() {
     }
 
     fetchTasks();
+
+    async function fetchReport() {
+      try {
+        const data = await getWeeklyReport();
+        setReport(data);
+      } catch (err) {
+        console.error('Error fiding weekly report:', err)
+      }
+    }
+    fetchReport();
   }, []);
 
   async function handleCreateTask(e) {
@@ -258,9 +270,32 @@ export default function Dashboard() {
   )}
 </main>
 
-    <footer className="z-10 px-6 py-4 text-center text-gray-500 text-xs">
-      © 2025 TimeNest
-    </footer>
+<section className="px-6 py-8 bg-white mx-6 rounded-2xl shadow space-y-4 relative overflow-hidden">
+  <h2 className="text-xl font-semibold text-emerald-600">Weekly Report</h2>
+  <div className="overflow-x-auto"></div>
+  <table className="w-full table-auto text-center">
+    <thead>
+      <tr className="bg-emerald-100">
+        <th className="px-4 py-2">Date</th>
+        <th className="px-4 py-2">Created</th>
+        <th className="px-4 py-2">Completed</th>
+      </tr>
+    </thead>
+    <tbody>
+      {report.map(({ date, created, completed }) => (
+        <tr key={date} className="border-b">
+          <td className="px-4 py-2">{date}</td>
+          <td className="px-4 py-2">{created}</td>
+          <td className="px-4 py-2">{completed}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</section>
+
+<footer className="z-10 px-6 py-4 text-center text-gray-500 text-xs">
+  © 2025 TimeNest
+</footer>
   </div>
   )
 }

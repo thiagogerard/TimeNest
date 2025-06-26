@@ -41,6 +41,9 @@ cron.schedule('0 0 * * *', async () => {
   }
 });
 
+const reportRoutes = require('./routes/reportRoutes');
+app.use('/api/report', reportRoutes);
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Internal server error' });
