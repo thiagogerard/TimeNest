@@ -193,6 +193,39 @@ export default function Dashboard() {
                   : ''
               }`}
             >
+              {editingId === task._id ? (
+        // === MODO EDIÇÃO ===
+        <div className="space-y-3">
+          <input
+            type="text"
+            value={editCategory}
+            onChange={e => setEditCategory(e.target.value)}
+            className="w-full border px-2 py-1 rounded"
+          />
+          <input
+            type="text"
+            value={editTitle}
+            onChange={e => setEditTitle(e.target.value)}
+            className="w-full border px-2 py-1 rounded"
+          />
+          <div className="flex justify-end space-x-2">
+            <button
+              onClick={() => setEditingId(null)}
+              className="px-3 py-1 text-sm"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => handleEditSave(task._id)}
+              className="px-3 py-1 bg-emerald-500 text-white rounded"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      ) : (
+        // === MODO VISUALIZAÇÃO ===
+            <>
               <div>
                 <h4 className="font-medium">{task.title}</h4>
                 <p className="text-sm text-gray-500">{task.category}</p>
@@ -206,18 +239,26 @@ export default function Dashboard() {
                     ✓
                   </button>
                 )}
-                <button
-                  onClick={() => handleDelete(task._id)}
-                  className="text-red-500"
-                >
-                  🗑
-                </button>
+                  <button
+                    onClick={() => startEditing(task)}
+                    className="text-blue-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(task._id)}
+                    className="text-red-500"
+                  > 
+                    🗑
+                  </button>
               </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
+            </>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</main>
 
     <footer className="z-10 px-6 py-4 text-center text-gray-500 text-xs">
       © 2025 TimeNest
