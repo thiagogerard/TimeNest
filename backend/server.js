@@ -40,3 +40,8 @@ cron.schedule('0 0 * * *', async () => {
     console.error('Error reseting daily energy:', err);
   }
 });
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal server error' });
+});

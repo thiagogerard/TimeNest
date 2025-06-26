@@ -15,6 +15,7 @@ exports.createTask = async (req, res) => {
 
     res.status(201).json(task);
   } catch (err) {
+    console.error(err.stack); 
     res.status(500).json({ error: err.message });
   }
 };
@@ -24,6 +25,7 @@ exports.getTasks = async (req, res) => {
       const tasks = await Task.find({ userId: req.user.id }).sort({ createdAt: -1 });
       res.json(tasks);
     } catch (err) {
+      console.error(err.stack); 
       res.status(500).json({ error: err.message });
     }
 };
@@ -33,12 +35,14 @@ exports.updateTask = async (req, res) => {
     const updates = req.body;
   
     try {
-      const oldTask = await task.findOne({_id: id, userId: req.user.id});
-      if (!oldTask) return res.status(404).json({ message: 'Task not found' })
+      const oldTask = await Task.findOne({_id: id, userId: req.user.id});
+      if (!oldTask) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
 
-      const task = await Task.findOneAndUpdate(
+      const updatedTask = await Task.findOneAndUpdate(
         { _id: id, userId: req.user.id },
-        req.body,
+        updates,
         { new: true }
       );
 
@@ -48,12 +52,14 @@ exports.updateTask = async (req, res) => {
         await user.save();
 
         return res.json({
+          task: updatedTask,
           dailyEnergy: user.dailyEnergy,
         });
       }
   
-      res.json(task);
+      return res.json({ task: updatedTask });
     } catch (err) {
+      console.error(err.stack)
       res.status(500).json({ error: err.message });
     } 
 };
@@ -69,6 +75,7 @@ exports.deleteTask = async (req, res) => {
   
       res.json({ message: 'Task deleted' });
     } catch (err) {
+      console.error(err.stack); 
       res.status(500).json({ error: err.message });
     }
   };
