@@ -76,7 +76,7 @@ export default function Dashboard() {
 
   async function handleComplete(id) {
     try{
-      const updatedTask = await updateTask(id, {status: 'completed'});
+      const {task: updatedTask, dailyEnergy} = await updateTask(id, {status: 'completed'});
 
       setTasks(prev => 
         prev.map(task => 
@@ -84,7 +84,7 @@ export default function Dashboard() {
         )
       );
 
-      toast.success('Task successfully updated!')
+      toast.success(`Task successfully comleted! Remaining energy: ${dailyEnergy}`)
     } catch (err) {
       console.error('Error completing task:', err);
       toast.error('Error updating task!')
@@ -194,7 +194,6 @@ export default function Dashboard() {
               }`}
             >
               {editingId === task._id ? (
-        // === MODO EDIÇÃO ===
         <div className="space-y-3">
           <input
             type="text"
@@ -224,7 +223,6 @@ export default function Dashboard() {
           </div>
         </div>
       ) : (
-        // === MODO VISUALIZAÇÃO ===
             <>
               <div>
                 <h4 className="font-medium">{task.title}</h4>
