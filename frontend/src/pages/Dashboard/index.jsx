@@ -67,6 +67,8 @@ export default function Dashboard() {
       setWeight(10);
       setDueDate('');
 
+      const freshReport = await getWeeklyReport();
+      setReport(freshReport);
       toast.success('Task successfully created!')
     } catch (err) {
       console.error('Error creating task:', err)
@@ -96,6 +98,8 @@ export default function Dashboard() {
         )
       );
 
+      const freshReport = await getWeeklyReport();
+      setReport(freshReport);
       toast.success(`Task successfully comleted! Remaining energy: ${dailyEnergy}`)
     } catch (err) {
       console.error('Error completing task:', err);
@@ -111,15 +115,13 @@ export default function Dashboard() {
 
   async function handleEditSave(id) {
     try {
-      const updatedTask = await updateTask(id, {
+      const { task: updatedTask } = await updateTask(id, {
         title: editTitle,
         category: editCategory
       });
 
       setTasks(prev =>
-        prev.map(task =>
-          task._id === id ? updatedTask : task
-        )
+        prev.map(task => task._id === id ? updatedTask : task)
       );
       setEditingId(null);
 

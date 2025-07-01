@@ -29,6 +29,9 @@ app.use('/api/auth', authRoutes);
 const taskRoutes = require('./routes/taskRoutes');
 app.use('/api/tasks', taskRoutes);
 
+const reportRoutes = require('./routes/reportRoutes');
+app.use('/api/report', reportRoutes);
+
 cron.schedule('0 0 * * *', async () => {
   try {
     await User.updateMany({}, {
@@ -40,9 +43,6 @@ cron.schedule('0 0 * * *', async () => {
     console.error('Error reseting daily energy:', err);
   }
 });
-
-const reportRoutes = require('./routes/reportRoutes');
-app.use('/api/report', reportRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
