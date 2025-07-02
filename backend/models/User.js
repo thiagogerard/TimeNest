@@ -4,7 +4,8 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  dailyEnergy: { type: Number, default: 100 }
+  dailyEnergy: { type: Number, default: 100 },
+  lastEnergyReset: { type: Date, default: Date.now }
 }, {
   timestamps: true
 });
