@@ -15,6 +15,7 @@ export default function Register() {
     try {
       const data = await registerUser(name, email, password);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('dailyEnergy', data.user.dailyEnergy);
       navigate('/dashboard');
     } catch (err) {
       console.error('Register error', err);
