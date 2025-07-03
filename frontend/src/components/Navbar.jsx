@@ -18,6 +18,17 @@ export default function Navbar() {
     setEnergy(e)
   }, [])
 
+  useEffect(() => {
+    function onEnergyChange(e) {
+      setEnergy(e.detail);
+    }
+
+    window.addEventListener('energyChange', onEnergyChange);
+    return () => {
+      window.removeEventListener('energyChange', onEnergyChange);
+    };
+  }, []);
+
   return (
     <nav className="sticky top-0 z-30 bg-white shadow-md flex items-center justify-between px-4 py-3 md:shadow-none">
       

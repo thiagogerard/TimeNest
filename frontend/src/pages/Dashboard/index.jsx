@@ -90,13 +90,16 @@ export default function Dashboard() {
 
   async function handleComplete(id) {
     try{
-      const {task: updatedTask, dailyEnergy} = await updateTask(id, {status: 'completed'});
+      const { task: updatedTask, dailyEnergy } = await updateTask(id, { status: 'completed' });
 
       setTasks(prev => 
         prev.map(task => 
           task._id === id ? updatedTask : task
         )
       );
+
+      localStorage.setItem('dailyEnergy', dailyEnergy);
+      window.dispatchEvent(new CustomEvent('energyChange', { detail: dailyEnergy }));
 
       const freshReport = await getWeeklyReport();
       setReport(freshReport);
