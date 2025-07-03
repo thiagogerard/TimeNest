@@ -17,6 +17,7 @@ export default function Login() {
             console.log('Answer from backend', data);
             localStorage.setItem('token', data.token);
             localStorage.setItem('username', data.user.name);
+            localStorage.setItem('dailyEnergy', data.user.dailyEnergy);
             navigate('/dashboard');
         } catch (err) {
             console.error('Login error', err);

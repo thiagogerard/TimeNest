@@ -1,15 +1,22 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import logo from '../assets/timenest.png' 
 
 export default function Navbar() {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
+  const [energy, setEnergy] = useState(0)
 
   function handleLogout() {
     localStorage.removeItem('token')
+    localStorage.removeItem('dailyEnergy')
     navigate('/login')
   }
+
+  useEffect(() => {
+    const e = Number(localStorage.getItem('dailyEnergy')) || 0
+    setEnergy(e)
+  }, [])
 
   return (
     <nav className="sticky top-0 z-30 bg-white shadow-md flex items-center justify-between px-4 py-3 md:shadow-none">
@@ -18,6 +25,10 @@ export default function Navbar() {
         <img src={logo} alt="TimeNest" className="w-8 h-8" />
         <span className="text-lg font-semibold text-emerald-600">TimeNest</span>
       </Link>
+
+      <div className="hidden md:block text-sm text-gray-700">
+        ⚡ Energia: <span className="font-medium">{energy}</span>/100
+      </div>
 
       <button
         className="md:hidden text-2xl text-emerald-600"
