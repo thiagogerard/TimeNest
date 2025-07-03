@@ -1,89 +1,101 @@
-# TimeNest 🕊️
+# TimeNest
 
-TimeNest is a mindful task management app focused on energy tracking instead of just productivity. 
-It helps users assign energy weights to tasks and manage their workload in a healthier and more balanced way.
+TimeNest is a simple task management app that helps users organize and track daily tasks, manage energy levels, and view weekly reports. It features user authentication, CRUD operations for tasks, a protected dashboard, and a weekly summary report.
 
 ## 🚀 Features
 
-- ✅ Secure user authentication with JWT
-- ✅ Task creation with energy weight (light, medium, heavy)
-- ✅ Daily energy usage tracking
-- ✅ CRUD operations for tasks
-- ✅ Weekly dashboard (to be implemented)
-- ✅ Public landing page and user profile (frontend)
+* ✅ Secure user authentication with JWT
+* ✅ Task creation with energy weight (light, medium, high)
+* ✅ Daily energy usage tracking with automatic reset
+* ✅ CRUD operations for tasks (create, edit, complete, delete)
+* ✅ View tasks due today in an intuitive list
+* ✅ Protected routes for authenticated users (Dashboard, Profile)
+* ✅ Weekly dashboard with summary of created vs. completed tasks
+* ✅ User Profile with total, pending, and completed task counts
+* ✅ Custom 404 page for invalid routes
 
-## 🧱 Tech Stack
+## Tech Stack
 
-**Frontend:**
-- React.js
-- TailwindCSS
-- React Router
-- Axios
-- Recharts (for charts)
+* **Frontend:** React, React Router, Tailwind CSS, Axios, react-toastify
+* **Backend:** Node.js, Express, MongoDB, Mongoose
+* **Authentication:** JSON Web Tokens (JWT)
+* **Scheduling:** node-cron for daily energy reset
 
-**Backend:**
-- Node.js + Express
-- MongoDB + Mongoose
-- JWT + bcrypt
-- CORS + middleware
+## Getting Started
 
-**Deployment:**
-- Vercel (Frontend)
-- Render or Railway (Backend)
-- GitHub for version control
+### Prerequisites
 
-## 📦 Installation
+* Node.js v16+ and npm
+* MongoDB instance (local or cloud)
 
-**Backend**
-```bash
-cd backend
-npm install
-npm run dev
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/thiagogerard/TimeNest.git
+   cd TimeNest
+   ```
+
+2. Install backend dependencies and start server:
+
+   ```bash
+   cd backend
+   npm install
+   npm run dev
+   ```
+
+3. Install frontend dependencies and start client:
+
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+4. Open your browser and navigate to:
+
+   * Frontend: `http://localhost:3000`
+   * Backend API: `http://localhost:5001`
+
+### Environment Variables
+
+Create a `.env` file in the `backend` folder with the following keys:
+
+```ini
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+PORT=5001
 ```
 
-**Frontend**
-```bash
-cd frontend
-npm install
-npm run dev
-```
+## API Documentation
 
-## 📌 API Documentation
-See the full API docs here: [timenest_api_endpoints.md](./timenest_api_endpoints.md)
+* **User Registration:** `POST /api/auth/register`
+* **User Login:** `POST /api/auth/login`
+* **Get Current User:** `GET /api/auth/me`
+* **Get Tasks:** `GET /api/tasks`
+* **Create Task:** `POST /api/tasks`
+* **Update Task:** `PUT /api/tasks/:id`
+* **Delete Task:** `DELETE /api/tasks/:id`
+* **Weekly Report:** `GET /api/report/weekly`
 
-## 🙋‍♂️ Author
+## Usage
 
-- Thiago Souza Geraldi — [GitHub](https://github.com/thiagogerard)
+1. **Register:** Create a new account with name, email, and password.
+2. **Login:** Authenticate and receive a JWT token.
+3. **Dashboard:** Create, edit, complete, and delete tasks. Monitor your daily energy level.
+4. **Profile:** View your username, current energy, and task statistics.
+5. **Weekly Report:** Check the summary of tasks created and completed in the past 7 days.
 
-## 📄 License
+## Scripts
 
-This project is licensed under the MIT License.
-## 🧠 Project Proposal
+* `npm run dev` - Run the development server (backend or frontend)
+* `npm test` - Run tests (if available)
 
-**Problem:**
-Most task management apps focus only on raw productivity — completing more tasks regardless of personal limits.
-This often leads to burnout and poor workload balance.
+## Contributing
 
-**Solution:**
-TimeNest introduces a balanced productivity approach. Each task is assigned an 'energy weight', and users can track their daily energy capacity.
-This allows better planning, prevents overcommitment, and encourages sustainable productivity.
+Contributions are welcome! Please open an issue or submit a pull request for any improvements.
 
-**Technology Stack:**
+## License
 
-**Frontend:**
-- React.js
-- TailwindCSS
-- React Router
-- Axios
-- Recharts
-
-**Backend:**
-- Node.js + Express
-- MongoDB + Mongoose
-- JWT + bcrypt
-- CORS + custom middlewares
-
-**Deployment:**
-- Vercel (frontend)
-- Render or Railway (backend)
-- GitHub for version control
+MIT License
