@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import PrivateRoute from './components/PrivateRoute'
 import Navbar from './components/Navbar'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -16,7 +17,6 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
         <Route path="/dashboard" 
           element={
             <PrivateRoute>
@@ -33,6 +33,7 @@ function App() {
             </PrivateRoute>
           } 
         />
+        <Route path="*" element={<NotFound />}/>
       </Routes>
       <ToastContainer />
     </>
