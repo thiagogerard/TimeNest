@@ -12,7 +12,7 @@ exports.register = async (req, res) => {
     if (existing) return res.status(400).json({ message: 'Email already in use' });
 
     const hashed = await bcrypt.hash(password, 10);
-    const user = await User.create({ name, email, password: hashed, dailyEnergy: 100, lastEnergyRese: new Date() });
+    const user = await User.create({ name, email, password: hashed, dailyEnergy: 100, lastEnergyReset: new Date() });
     const now = new Date();
     const last = user.lastEnergyReset || 0;
     const ONE_DAY = 24 * 60 *60 * 1000;

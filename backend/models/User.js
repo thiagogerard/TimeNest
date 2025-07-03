@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   dailyEnergy: { type: Number, default: 100 },
-  lastEnergyReset: { type: Date, default: Date.now }
+  lastEnergyReset: { type: Date, default: Date.now },
 }, {
   timestamps: true
 });
