@@ -16,11 +16,6 @@ exports.register = async (req, res) => {
     const now = new Date();
     const last = user.lastEnergyReset || 0;
     const ONE_DAY = 24 * 60 *60 * 1000;
-    if (now - last >= ONE_DAY) {
-      user.dailyEnergy = 100;
-      user.lastEnergyReset = now;
-      await user.save();
-    }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' }); 
 
