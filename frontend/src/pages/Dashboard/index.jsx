@@ -46,6 +46,12 @@ export default function Dashboard() {
   async function handleCreateTask(e) {
     e.preventDefault();
 
+    const energy = Number(localStorage.getItem('dailyEnergy') || 0);
+    if (energy <= 0) {
+      toast.error('you have no energy left! Renew energy to add tasks.');
+      return;
+    }
+
     if (!title.trim() || !category.trim()) {
       toast.warn('Fill out the title and category!');
       return;
@@ -89,6 +95,13 @@ export default function Dashboard() {
   }
 
   async function handleComplete(id) {
+    const energy = Number(localStorage.getItem('dailyEnergy') || 0);
+    const taskComplete = tasks.find(t => t._id === id);
+    if (energy < taskComplete.weight) {
+      toast.error('Not enough energy to complete this task.');
+      return;
+    }
+
     try{
       const { task: updatedTask, dailyEnergy } = await updateTask(id, { status: 'completed' });
 
