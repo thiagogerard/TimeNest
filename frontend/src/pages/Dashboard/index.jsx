@@ -12,7 +12,7 @@ export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
-  const [weight, setWeight] = useState('');
+  const [weight, setWeight] = useState('10');
   const [dueDate, setDueDate] = useState('');
   const [editingId, setEditingId] = useState('');
   const [editTitle, setEditTitle] = useState('');
