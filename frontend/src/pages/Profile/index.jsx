@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getTasks } from "../../services/taskService";
 import logo from "../../assets/timenest.png";
+import { toast } from 'react-toastify';
 
 export default function Profile() {
   const [username, setUsername] = useState("");
