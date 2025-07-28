@@ -42,6 +42,7 @@ export default function Profile() {
 
   function handleSaveEnergy() {
     localStorage.setItem("dailyEnergy", energyInput);
+    localStorage.setItem("dailyEnergyTotal", energyInput);
     window.dispatchEvent(new CustomEvent("energyChange", { detail: energyInput }));
     toast.success("Daily energy updated!");
   }

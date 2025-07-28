@@ -5,7 +5,12 @@ import logo from '../assets/timenest.png'
 export default function Navbar() {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
-  const [energy, setEnergy] = useState(0)
+  const [energy, setEnergy] = useState(
+    Number(localStorage.getItem("dailyEnergy")) || 0
+  );
+  const [totalEnergy, setTotalEnergy] = useState(
+    Number(localStorage.getItem("dailyEnergyTotal")) || 100
+  );
 
   function handleLogout() {
     localStorage.removeItem('token')
@@ -14,13 +19,18 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    const e = Number(localStorage.getItem('dailyEnergy')) || 0
-    setEnergy(e)
+    const e = Number(localStorage.getItem('dailyEnergy')) || 0;
+    const total = Number(localStorage.getItem('dailyEnergyTotal')) || 100;
+    setEnergy(e);
+    setTotalEnergy(total);
   }, [])
 
   useEffect(() => {
     function onEnergyChange(e) {
       setEnergy(e.detail);
+      setTotalEnergy(
+        Number(localStorage.getItem("dailyEnergyTotal")) || totalEnergy
+      );
     }
 
     window.addEventListener('energyChange', onEnergyChange);
@@ -38,7 +48,7 @@ export default function Navbar() {
       </Link>
 
       <div className="hidden md:block text-sm text-gray-700">
-        ⚡ Energia: <span className="font-medium">{energy}</span>/100
+        ⚡ Energia: <span className="font-medium">{energy}/{totalEnergy}</span>
       </div>
 
       <button
