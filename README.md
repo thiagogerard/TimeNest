@@ -1,101 +1,129 @@
-# TimeNest
+# TimeNest 🪺
 
-TimeNest is a simple task management app that helps users organize and track daily tasks, manage energy levels, and view weekly reports. It features user authentication, CRUD operations for tasks, a protected dashboard, and a weekly summary report.
+**TimeNest** is a habit-building task manager that helps users organize daily priorities, track energy, and build consistency. The app offers an intuitive dashboard, dynamic energy system, and visual weekly reports — all designed to make productivity feel sustainable.
 
-## 🚀 Features
+---
 
-* ✅ Secure user authentication with JWT
-* ✅ Task creation with energy weight (light, medium, high)
-* ✅ Daily energy usage tracking with automatic reset
-* ✅ CRUD operations for tasks (create, edit, complete, delete)
-* ✅ View tasks due today in an intuitive list
-* ✅ Protected routes for authenticated users (Dashboard, Profile)
-* ✅ Weekly dashboard with summary of created vs. completed tasks
-* ✅ User Profile with total, pending, and completed task counts
-* ✅ Custom 404 page for invalid routes
+## 🔗 Live Demo
 
-## Tech Stack
+- **Frontend:** https://time-nest-js5cbdc9u-thiagogerards-projects.vercel.app  
+- **Backend API:** https://timenest-production.up.railway.app
 
-* **Frontend:** React, React Router, Tailwind CSS, Axios, react-toastify
-* **Backend:** Node.js, Express, MongoDB, Mongoose
-* **Authentication:** JSON Web Tokens (JWT)
-* **Scheduling:** node-cron for daily energy reset
+---
 
-## Getting Started
+## ✨ Features
 
-### Prerequisites
+- ✅ Secure user authentication (JWT)
+- ✅ Daily energy tracking and depletion system
+- ✅ Create, complete, edit, and delete tasks
+- ✅ Tasks categorized by energy weight (Light, Medium, Heavy)
+- ✅ Weekly report with interactive bar chart (Recharts)
+- ✅ Custom profile page with energy settings and manual refresh
+- ✅ Responsive design with Tailwind CSS
+- ✅ Protected routes with token validation
+- ✅ Custom 404 page
 
-* Node.js v16+ and npm
-* MongoDB instance (local or cloud)
+---
 
-### Installation
+## 🖥 Tech Stack
 
-1. Clone the repository:
+**Frontend:**
+- React
+- React Router
+- Tailwind CSS
+- Axios
+- Recharts
+- React Toastify
 
-   ```bash
-   git clone https://github.com/thiagogerard/TimeNest.git
-   cd TimeNest
-   ```
+**Backend:**
+- Node.js
+- Express
+- MongoDB Atlas
+- Mongoose
+- JWT
+- node-cron (daily reset)
 
-2. Install backend dependencies and start server:
+---
 
-   ```bash
-   cd backend
-   npm install
-   npm run dev
-   ```
+## 🚀 Getting Started (Local Setup)
 
-3. Install frontend dependencies and start client:
+### 1. Clone the repo
 
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-
-4. Open your browser and navigate to:
-
-   * Frontend: `http://localhost:3000`
-   * Backend API: `http://localhost:5001`
-
-### Environment Variables
-
-Create a `.env` file in the `backend` folder with the following keys:
-
-```ini
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-PORT=5001
+```bash
+git clone https://github.com/thiagogerard/TimeNest.git
+cd TimeNest
 ```
 
-## API Documentation
+---
 
-* **User Registration:** `POST /api/auth/register`
-* **User Login:** `POST /api/auth/login`
-* **Get Current User:** `GET /api/auth/me`
-* **Get Tasks:** `GET /api/tasks`
-* **Create Task:** `POST /api/tasks`
-* **Update Task:** `PUT /api/tasks/:id`
-* **Delete Task:** `DELETE /api/tasks/:id`
-* **Weekly Report:** `GET /api/report/weekly`
+### 2. Backend Setup
 
-## Usage
+```bash
+cd backend
+npm install
+```
 
-1. **Register:** Create a new account with name, email, and password.
-2. **Login:** Authenticate and receive a JWT token.
-3. **Dashboard:** Create, edit, complete, and delete tasks. Monitor your daily energy level.
-4. **Profile:** View your username, current energy, and task statistics.
-5. **Weekly Report:** Check the summary of tasks created and completed in the past 7 days.
+Create a `.env` file with:
 
-## Scripts
+```env
+PORT=5001
+JWT_SECRET=yourSecret
+MONGODB_URI=yourMongoConnectionString
+```
 
-* `npm run dev` - Run the development server (backend or frontend)
-* `npm test` - Run tests (if available)
+Start the server:
 
-## Contributing
+```bash
+npm run dev
+```
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements.
+---
 
-## License
+### 3. Frontend Setup
 
-MIT License
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+Open: http://localhost:3000
+
+---
+
+## 📊 API Endpoints
+
+**Auth**
+- POST /api/auth/register – Register user  
+- POST /api/auth/login – Login user  
+- GET /api/auth/me – Get current user  
+
+**Tasks**
+- GET /api/tasks – List tasks  
+- POST /api/tasks – Create task  
+- PUT /api/tasks/:id – Update task  
+- DELETE /api/tasks/:id – Delete task  
+
+**Reports**
+- GET /api/report/weekly – Weekly task stats  
+
+---
+
+## 🙋 Author
+
+Created by [Thiago Geraldi](https://github.com/thiagogerard)
+
+---
+
+## 🧪 To Do (future improvements)
+
+- 🎯 Tag system for categories  
+- 📱 Mobile drag-and-drop tasks  
+- ⏰ Reminder notifications  
+- 🧠 Gamified streak system
+
+---
+
+## 📄 License
+
+MIT
