@@ -165,27 +165,27 @@ export default function Dashboard() {
       <h1 className="text-2xl font-bold text-emerald-600 mb-4 ">Your Tasks</h1>
       <form
         onSubmit={handleCreateTask}
-        className="w-full bg-white p-4 rounded-xl shadow-lg space-y-3"
+        className="w-full max-w-md mx-auto bg-white p-6 rounded-2xl shadow-md space-y-4 transition-all"
       >
         <input
           type="text"
           placeholder="Category"
           value={category}
           onChange={e => setCategory(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2"
+          className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
         />
         <input
           type="text"
           placeholder="Title"
           value={title}
           onChange={e => setTitle(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2"
+          className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
         />
         <div className="flex space-x-2">
           <select
             value={weight}
             onChange={e => setWeight(Number(e.target.value))}
-            className="flex-1 border border-gray-300 rounded px-3 py-2"
+            className="flex-1 border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
           >
             <option value={10}>Light</option>
             <option value={25}>Medium</option>
@@ -195,12 +195,12 @@ export default function Dashboard() {
             type="date"
             value={dueDate}
             onChange={e => setDueDate(e.target.value)}
-            className="flex-1 border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-emerald-400 to-emerald-600 text-white py-2 rounded-full font-semibold shadow"
+          className="w-full py-2 bg-gradient-to-r from-emerald-400 to-emerald-600 text-white font-semibold rounded-full shadow-md hover:opacity-90 transition"
         >
           Criar tarefa
         </button>
@@ -215,10 +215,9 @@ export default function Dashboard() {
           {todaysTasks.map(task => (
             <li
               key={task._id}
-              className={`bg-white p-4 rounded-xl shadow flex justify-between items-center ${
-                task.status === 'completed'
-                  ? 'opacity-60 line-through'
-                  : ''
+              className={`bg-white px-5 py-4 rounded-2xl shadow-md flex justify-between items-center transition hover:shadow-lg 
+              ${
+                task.status === 'completed' ? 'opacity-60 line-through' : ''
               }`}
             >
               {editingId === task._id ? (
@@ -253,27 +252,27 @@ export default function Dashboard() {
       ) : (
             <>
               <div>
-                <h4 className="font-medium">{task.title}</h4>
+                <h4 className="text-lg font-semibold text-gray-800">{task.title}</h4>
                 <p className="text-sm text-gray-500">{task.category}</p>
               </div>
               <div className="flex items-center space-x-2">
                 {task.status === 'pending' && (
                   <button
                     onClick={() => handleComplete(task._id)}
-                    className="text-emerald-600"
+                    className="text-emerald-600 hover:text-emerald-800 transition"
                   >
                     ✓
                   </button>
                 )}
                   <button
                     onClick={() => startEditing(task)}
-                    className="text-blue-600"
+                    className="text-blue-600 hover:text-blue-800 transition"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(task._id)}
-                    className="text-red-500"
+                    className="text-red-500 hover:text-red-700 transition"
                   > 
                     🗑
                   </button>
@@ -286,26 +285,28 @@ export default function Dashboard() {
   )}
 </main>
 
-<section className="px-6 py-8 bg-white mx-6 rounded-2xl shadow space-y-4 relative overflow-hidden">
-  <h2 className="text-xl font-semibold text-emerald-600">Weekly Report</h2>
-  <div className="overflow-x-auto"></div>
+<section className="px-6 py-8 bg-white mx-6 my-8 rounded-2xl shadow-md space-y-4 relative overflow-hidden">
+  <h2 className="text-xl font-semibold text-emerald-600 text-center">Weekly Report</h2>
   <div className="w-full h-72">
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart
-        data={report}
-        margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="created" fill="#10B981" name="Created" />
-        <Bar dataKey="completed" fill="#3B82F6" name="Completed" />
-      </BarChart>
-    </ResponsiveContainer>
+    {report.length > 0 ? (
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={report}
+          margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="created" fill="#10B981" name="Created" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="completed" fill="#3B82F6" name="Completed" radius={[4, 4, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    ) : (
+      <p className="text-center text-gray-400 mt-10">No data yet — complete or create a task to see your report!</p>
+    )}
   </div>
-
 </section>
 
 <footer className="z-10 px-6 py-4 text-center text-gray-500 text-xs">
