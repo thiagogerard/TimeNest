@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import {
-  getTasks,
-  createTask,
-  updateTask,
-  deleteTask,
-} from '../../services/taskService';
+import { getTasks, createTask, updateTask, deleteTask } from '../../services/taskService';
 import { getWeeklyReport } from '../../services/reportService';
 import { toast } from 'react-toastify';
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts';
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
@@ -291,24 +289,23 @@ export default function Dashboard() {
 <section className="px-6 py-8 bg-white mx-6 rounded-2xl shadow space-y-4 relative overflow-hidden">
   <h2 className="text-xl font-semibold text-emerald-600">Weekly Report</h2>
   <div className="overflow-x-auto"></div>
-  <table className="w-full table-auto text-center">
-    <thead>
-      <tr className="bg-emerald-100">
-        <th className="px-4 py-2">Date</th>
-        <th className="px-4 py-2">Created</th>
-        <th className="px-4 py-2">Completed</th>
-      </tr>
-    </thead>
-    <tbody>
-      {report.map(({ date, created, completed }) => (
-        <tr key={date} className="border-b">
-          <td className="px-4 py-2">{date}</td>
-          <td className="px-4 py-2">{created}</td>
-          <td className="px-4 py-2">{completed}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+  <div className="w-full h-72">
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart
+        data={report}
+        margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="created" fill="#10B981" name="Created" />
+        <Bar dataKey="completed" fill="#3B82F6" name="Completed" />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+
 </section>
 
 <footer className="z-10 px-6 py-4 text-center text-gray-500 text-xs">
