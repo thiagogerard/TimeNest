@@ -48,7 +48,7 @@ export default function Navbar() {
       </Link>
 
       <div className="hidden md:block text-sm text-gray-700">
-        ⚡ Energia: <span className="font-medium">{energy}/{totalEnergy}</span>
+        ⚡ Energy: <span className="font-medium">{energy}/{totalEnergy}</span>
       </div>
 
       <button

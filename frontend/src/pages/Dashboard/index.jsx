@@ -202,7 +202,7 @@ export default function Dashboard() {
           type="submit"
           className="w-full py-2 bg-gradient-to-r from-emerald-400 to-emerald-600 text-white font-semibold rounded-full shadow-md hover:opacity-90 transition"
         >
-          Criar tarefa
+          Create task
         </button>
       </form>
     </header>
