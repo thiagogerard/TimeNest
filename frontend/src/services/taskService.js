@@ -29,7 +29,7 @@ export async function getTasks() {
 export async function deleteTask(id) {
     const token = localStorage.getItem('token');
 
-    const response = axios.delete(`${API_URL}/tasks/${id}`, {
+    const response = axios.delete(`${API_URL}/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -41,7 +41,7 @@ export async function deleteTask(id) {
 export async function updateTask(id, data) {
     const token = localStorage.getItem('token');
 
-    const response = await axios.put(`${API_URL}/tasks/${id}`, data, {
+    const response = await axios.put(`${API_URL}/${id}`, data, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
